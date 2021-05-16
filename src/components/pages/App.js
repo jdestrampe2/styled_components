@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Login from '../../components/pages/Login';
-import Home from '../../components/pages/Home';
+import Login from '../../components/pages/Login.js';
+import Home from '../../components/pages/Home.js';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
