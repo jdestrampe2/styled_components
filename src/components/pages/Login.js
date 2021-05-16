@@ -1,6 +1,12 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import styled from 'styled-components';
-import { PageLayout, Input, PasswordInput, Button } from '../../components/common';
+import {
+	PageLayout,
+	Input,
+	PasswordInput,
+	Button,
+  Spinner
+} from '../../components/common';
 
 const Form = styled.form`
 	width: 100%;
@@ -12,17 +18,17 @@ const Form = styled.form`
 	color: black;
 	border-radius: 4px;
 
-  .alt-text {
-    text-align: center;
-    margin: 10px 0;
-  }
+	.alt-text {
+		text-align: center;
+		margin: 10px 0;
+	}
 `;
 
 let timeout;
 
 export default function Login() {
 	const [formFields, setFormFields] = useState({ username: '', password: '' });
-  const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	function handleInputChange(e) {
 		e.persist();
@@ -32,47 +38,53 @@ export default function Login() {
 		}));
 	}
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setLoading(true);
-    timeout = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }
+	function handleSubmit(e) {
+		e.preventDefault();
+		setLoading(true);
+		timeout = setTimeout(() => {
+			setLoading(false);
+		}, 2000);
+	}
 
-  useEffect(() => {
-    return () => {
-      if(timeout) {
-        clearTimeout(timeout);
-      }
-    }
-  }, [])
+	useEffect(() => {
+		return () => {
+			if (timeout) {
+				clearTimeout(timeout);
+			}
+		};
+	}, []);
 
 	return (
 		<PageLayout>
 			<h1>Login</h1>
 			<Form onSubmit={handleSubmit}>
-				<Input
-					value={formFields.username}
-					onChange={handleInputChange}
-					name='username'
-					type='text'
-					placeholder='Username'
-				/>
-        <PasswordInput
-					value={formFields.password}
-					onChange={handleInputChange}
-					name='password'
-				/>
-        <Button large type='submit' disabled={loading}>
-          {loading ? 'Loading...' : 'Login'}
-        </Button>
-        {!loading &&
-        <Fragment>
-            <div className='alt-text'>or</div>
-          <Button secondary type='button'>Sign Up</Button>
-        </Fragment>
-        }
+      {loading ? <Spinner /> : 
+				<Fragment>
+					<Input
+						value={formFields.username}
+						onChange={handleInputChange}
+						name='username'
+						type='text'
+						placeholder='Username'
+					/>
+					<PasswordInput
+						value={formFields.password}
+						onChange={handleInputChange}
+						name='password'
+					/>
+				</Fragment>
+      }
+				<Button large type='submit' disabled={loading}>
+					{loading ? 'Loading...' : 'Login'}
+				</Button>
+				{!loading && (
+					<Fragment>
+						<div className='alt-text'>or</div>
+						<Button secondary type='button'>
+							Sign Up
+						</Button>
+					</Fragment>
+				)}
 			</Form>
 		</PageLayout>
 	);
