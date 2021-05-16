@@ -12,6 +12,7 @@ const Button = styled.button`
   width: 100%;
   display: block;
   white-space: none;
+  cursor: pointer;
 
   &:disabled {
     background: #eee;
