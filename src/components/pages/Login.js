@@ -5,7 +5,7 @@ import {
 	Input,
 	PasswordInput,
 	Button,
-  Spinner
+	Spinner,
 } from '../../components/common';
 
 const Form = styled.form`
@@ -22,6 +22,15 @@ const Form = styled.form`
 		text-align: center;
 		margin: 10px 0;
 	}
+
+	> ${Button}:first-of-type {
+		margin-top: 20px;
+	}
+
+	>${Input} {
+		margin-top: 20px;
+	}
+
 `;
 
 let timeout;
@@ -58,22 +67,25 @@ export default function Login() {
 		<PageLayout>
 			<h1>Login</h1>
 			<Form onSubmit={handleSubmit}>
-      {loading ? <Spinner /> : 
-				<Fragment>
-					<Input
-						value={formFields.username}
-						onChange={handleInputChange}
-						name='username'
-						type='text'
-						placeholder='Username'
-					/>
-					<PasswordInput
-						value={formFields.password}
-						onChange={handleInputChange}
-						name='password'
-					/>
-				</Fragment>
-      }
+				{loading ? (
+					<Spinner />
+				) : (
+					<Fragment>
+						<span>Login or Sign Up Below</span>
+						<Input
+							value={formFields.username}
+							onChange={handleInputChange}
+							name='username'
+							type='text'
+							placeholder='Username'
+						/>
+						<PasswordInput
+							value={formFields.password}
+							onChange={handleInputChange}
+							name='password'
+						/>
+					</Fragment>
+				)}
 				<Button large type='submit' disabled={loading}>
 					{loading ? 'Loading...' : 'Login'}
 				</Button>
