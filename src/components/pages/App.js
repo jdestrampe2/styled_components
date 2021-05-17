@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from '../../components/pages/Login.js';
 import Home from '../../components/pages/Home.js';
+import LightTheme from '../../themes/light.js';
+import DarkTheme from '../../themes/dark.js'
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -14,14 +16,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme = {
-	primaryColor: '#f8049c',
-	secondaryColor: '#fdd54f',
-}
-
 function App() {
+	const [theme, setTheme] = useState(LightTheme);
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={{...theme, setTheme: () => {
+			setTheme(s => s.id === 'light' ? DarkTheme : LightTheme)
+		}}}>
 			<GlobalStyle />
 			<BrowserRouter>
 				<Switch>
