@@ -10,32 +10,36 @@ const HeaderWrapper = styled.header`
 	padding: 0 16px;
 	position: fixed;
 	top: 0;
-	background-image: linear-gradient(to right, #f8049c, #fdd54f);
-  border-bottom: 3px solid #fdd54f;
+	background-image: linear-gradient(
+		to right,
+		${(p) => p.theme.primaryColor},
+		${(p) => p.theme.secondaryColor}
+	);
+	border-bottom: 3px solid ${p => p.theme.secondaryColor};
 `;
 
 const Menu = styled.nav`
-	display: ${p => p.open ? 'block' : 'none'};
+	display: ${(p) => (p.open ? 'block' : 'none')};
 	font-family: 'Poppins', sans-serif;
-  position: absolute;
-  width: 100%;
-  top: 60px;
-  left: 0;
-  padding: 8px;
-  box-sizing: border-box;
-  border-bottom: 3px solid #fdd54f;
-  background: white;
+	position: absolute;
+	width: 100%;
+	top: 60px;
+	left: 0;
+	padding: 8px;
+	box-sizing: border-box;
+	border-bottom: 3px solid ${p => p.theme.secondaryColor};
+	background: white;
 
-  @media(min-width: 768px) {
-    display: flex;
-    background: none;
-    position: relative;
-	  width: initial;
-	  border-bottom: none;
-    margin: auto 0 auto auto;
-	  left: initial;
-	  top: initial;
-  }
+	@media (min-width: 768px) {
+		display: flex;
+		background: none;
+		position: relative;
+		width: initial;
+		border-bottom: none;
+		margin: auto 0 auto auto;
+		left: initial;
+		top: initial;
+	}
 `;
 
 const Link = ({ isActive, children, ...props }) => {
@@ -49,37 +53,37 @@ const StyledLink = styled(Link)`
 	box-sizing: border-box;
 	margin: auto 0;
 	font-weight: ${(p) => (p.isActive ? 'bold' : 'normal')};
-  color: black;
+	color: black;
 `;
 
 const MobileMenuIcon = styled.div`
-  margin: auto 0 auto auto;
-  width: 25px;
-  min-width: 25px;
-  padding: 5px;
+	margin: auto 0 auto auto;
+	width: 25px;
+	min-width: 25px;
+	padding: 5px;
 
-  > div {
-    height: 3px;
-    background: black;
-    margin: 5px 0;
-    width: 100%;
-  }
+	> div {
+		height: 3px;
+		background: black;
+		margin: 5px 0;
+		width: 100%;
+	}
 
-  @media(min-width: 768px) {
-    display: none;
-  }
+	@media (min-width: 768px) {
+		display: none;
+	}
 `;
 
 export function Header() {
 	const { pathname } = useLocation();
-  const [menuOpen, setMenuOpen] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(false);
 	return (
 		<HeaderWrapper>
-      <MobileMenuIcon onClick={() => setMenuOpen(s => !s)}>
-        <div />
-        <div />
-        <div />
-      </MobileMenuIcon>
+			<MobileMenuIcon onClick={() => setMenuOpen((s) => !s)}>
+				<div />
+				<div />
+				<div />
+			</MobileMenuIcon>
 			<Menu open={menuOpen}>
 				<StyledLink to='/' isActive={pathname === '/'}>
 					Home
