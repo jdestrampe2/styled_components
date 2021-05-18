@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const largeStyles = ({large}) => {
-	if(large) {
+const largeStyles = ({ large }) => {
+	if (large) {
 		return css`
 			padding: 10px;
 			border-radius: 5px;
@@ -10,25 +10,25 @@ const largeStyles = ({large}) => {
 		`;
 	} else {
 		return css`
-			border-radius: 4px;
 			padding: 8px;
+			border-radius: 4px;
 			font-size: 1em;
 		`;
 	}
-}
+};
 
 const Button = styled.button`
 	color: white;
-	background: ${(p) => (p.secondary ? p.theme.secondaryColor : p.theme.primaryColor)};
+	background: ${(p) =>
+		p.secondary ? p.theme.secondaryColor : p.theme.primaryColor};
 	font-weight: bold;
 	${largeStyles}
+
 	box-shadow: none;
 	border: none;
 	width: 100%;
 	display: block;
 	white-space: none;
-	cursor: pointer;
-
 	&:disabled {
 		background: #eee;
 		color: #666;
@@ -38,6 +38,6 @@ const Button = styled.button`
 Button.propTypes = {
 	large: PropTypes.bool,
 	secondary: PropTypes.bool,
-}
+};
 
 export { Button };

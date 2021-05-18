@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
-import { Toggle } from '../common/Toggle.js'
 import { Link as ReactRouterDomLink, useLocation } from 'react-router-dom';
+import { Toggle } from './Toggle';
 
 const HeaderWrapper = styled.header`
 	height: 60px;
@@ -16,30 +16,29 @@ const HeaderWrapper = styled.header`
 		${(p) => p.theme.primaryColor},
 		${(p) => p.theme.secondaryColor}
 	);
-	border-bottom: 3px solid ${p => p.theme.secondaryColor};
+	border-bottom: 3px solid ${(p) => p.theme.secondaryColor};
 `;
 
 const Menu = styled.nav`
 	display: ${(p) => (p.open ? 'block' : 'none')};
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Open Sans';
 	position: absolute;
 	width: 100%;
 	top: 60px;
 	left: 0;
 	padding: 8px;
 	box-sizing: border-box;
-	border-bottom: 3px solid ${p => p.theme.secondaryColor};
-	background: ${p => p.theme.bodyBackgroundColor};
-
+	border-bottom: 3px solid ${(p) => p.theme.secondaryColor};
+	background: ${(p) => p.theme.bodyBackgroundColor};
 	@media (min-width: 768px) {
 		display: flex;
 		background: none;
-		position: relative;
-		width: initial;
-		border-bottom: none;
-		margin: auto 0 auto auto;
 		left: initial;
 		top: initial;
+		margin: auto 0 auto auto;
+		border-bottom: none;
+		position: relative;
+		width: initial;
 	}
 `;
 
@@ -54,7 +53,7 @@ const StyledLink = styled(Link)`
 	box-sizing: border-box;
 	margin: auto 0;
 	font-weight: ${(p) => (p.isActive ? 'bold' : 'normal')};
-	color: ${p => p.theme.bodyFontColor};
+	color: ${(p) => p.theme.bodyFontColor};
 `;
 
 const MobileMenuIcon = styled.div`
@@ -62,14 +61,12 @@ const MobileMenuIcon = styled.div`
 	width: 25px;
 	min-width: 25px;
 	padding: 5px;
-
 	> div {
 		height: 3px;
-		background: ${p => p.theme.bodyFontColor};
+		background: ${(p) => p.theme.bodyFontColor};
 		margin: 5px 0;
 		width: 100%;
 	}
-
 	@media (min-width: 768px) {
 		display: none;
 	}
@@ -78,7 +75,7 @@ const MobileMenuIcon = styled.div`
 export function Header() {
 	const { pathname } = useLocation();
 	const [menuOpen, setMenuOpen] = useState(false);
-  const {id, setTheme} = useContext(ThemeContext);
+	const { id, setTheme } = useContext(ThemeContext);
 
 	return (
 		<HeaderWrapper>
@@ -94,7 +91,7 @@ export function Header() {
 				<StyledLink to='/login' isActive={pathname === '/login'}>
 					Login
 				</StyledLink>
-        <Toggle isActive={id === 'dark'} onToggle={setTheme}/>
+				<Toggle isActive={id === 'dark'} onToggle={setTheme} />
 			</Menu>
 		</HeaderWrapper>
 	);

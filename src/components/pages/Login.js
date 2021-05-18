@@ -1,12 +1,12 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 import {
 	PageLayout,
 	Input,
 	PasswordInput,
 	Button,
 	Spinner,
-} from '../../components/common';
+} from '../common';
+import styled from 'styled-components';
 
 const Form = styled.form`
 	width: 100%;
@@ -17,20 +17,16 @@ const Form = styled.form`
 	box-sizing: border-box;
 	color: black;
 	border-radius: 4px;
-
 	.alt-text {
 		text-align: center;
 		margin: 10px 0;
 	}
-
 	> ${Button}:first-of-type {
+		margin-top: 40px;
+	}
+	> ${Input} {
 		margin-top: 20px;
 	}
-
-	>${Input} {
-		margin-top: 20px;
-	}
-
 `;
 
 let timeout;
@@ -70,8 +66,8 @@ export default function Login() {
 				{loading ? (
 					<Spinner />
 				) : (
-					<Fragment>
-						<span>Login or Sign Up Below</span>
+					<>
+						<span>Login if you have an account</span>
 						<Input
 							value={formFields.username}
 							onChange={handleInputChange}
@@ -84,18 +80,18 @@ export default function Login() {
 							onChange={handleInputChange}
 							name='password'
 						/>
-					</Fragment>
+					</>
 				)}
 				<Button large type='submit' disabled={loading}>
 					{loading ? 'Loading...' : 'Login'}
 				</Button>
 				{!loading && (
-					<Fragment>
+					<>
 						<div className='alt-text'>or</div>
 						<Button secondary type='button'>
-							Sign Up
+							Register
 						</Button>
-					</Fragment>
+					</>
 				)}
 			</Form>
 		</PageLayout>

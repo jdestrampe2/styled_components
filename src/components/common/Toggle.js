@@ -10,7 +10,8 @@ const ToggleWrapper = styled.div`
 	margin: auto;
 	display: flex;
 	background-image: linear-gradient(
-		to bottom, ${(p) => p.theme.primaryColor},
+		to bottom,
+		${(p) => p.theme.primaryColor},
 		${(p) => p.theme.secondaryColor}
 	);
 `;
@@ -26,7 +27,7 @@ const Notch = styled.div`
 	transform: translate(${(p) => (p.isActive ? '26px' : '1px')});
 `;
 
-export function Toggle({isActive, onToggle}) {
+export function Toggle({ isActive, onToggle }) {
 	return (
 		<ToggleWrapper onClick={onToggle}>
 			<Notch isActive={isActive} />

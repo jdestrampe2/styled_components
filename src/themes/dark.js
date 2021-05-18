@@ -1,9 +1,9 @@
 const theme = {
-  id: 'dark',
+	id: 'dark',
 	primaryColor: 'black',
 	secondaryColor: 'midnightblue',
-  bodyBackgroundColor: 'black',
-  bodyFontColor: 'white',
-}
+	bodyBackgroundColor: 'black',
+	bodyFontColor: 'white',
+};
 
 export default theme;
